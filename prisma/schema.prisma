@@ -25,5 +25,5 @@ model Books {
   author String @db.VarChar(255)
   description String @db.VarChar(255)
   selected Boolean @default(false)
-  userRatings Int @default(0) 
+  userRatings Int @default(0) @map("user_ratings")
 }
