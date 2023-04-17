@@ -9,3 +9,21 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+model Users {
+  id String @id @default(uuid())
+  createdAt DateTime @default(now())
+  userName String @unique @db.VarChar(255) @map("user_name")
+  password String
+  isAdmin Boolean @default(false)
+}
+
+model Books {
+  id String @id @default(uuid())
+  createdAt DateTime @default(now())
+  title String @db.VarChar(255)
+  author String @db.VarChar(255)
+  description String @db.VarChar(255)
+  selected Boolean @default(false)
+  userRatings Int @default(0) 
+}
