@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import axios from "axios";
 
 export default function LoginPage() {
+  const [responseMessage, setResponseMessage] = useState(null)
   const formik = useFormik({
     initialValues: {
       user_name: "",
@@ -36,7 +37,11 @@ export default function LoginPage() {
       const response = await axios.post('/api/users/register', newUser);
 
       const data = await response
-      console.log(data)
+      if (data.status === 201) {
+        setResponseMessage(data.data)
+      } else {
+        setResponseMessage("Failed to register")
+      }
     },
   });
 
@@ -92,6 +97,7 @@ export default function LoginPage() {
 
           <button type='submit'>Register</button>
         </form>
+        {responseMessage ? (<div>{responseMessage}</div>) : null}
       </main>
     </>
   );
