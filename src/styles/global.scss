@@ -1,5 +1,5 @@
-@import './fonts.css'; 
-@import './colors.css';
+@use './partials/font.module.scss' as *;
+@use './partials/variables.module.scss' as *;
 
 *, *::before, *::after {
     box-sizing: border-box;
@@ -8,5 +8,5 @@
 body {
     margin: 0;
     font-family: 'Nunito', sans-serif;
-    background-color: var(--offWhite);
+    background-color: $off-white;
 }

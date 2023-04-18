@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+import styles from '../styles/components/Register.module.scss';
 
 export default function Register() {
   const [responseMessage, setResponseMessage] = useState(null);
@@ -44,8 +45,8 @@ export default function Register() {
     },
   });
   return (
-    <form onSubmit={formik.handleSubmit}>
-      <label htmlFor="user_name">User Name</label>
+    <form onSubmit={formik.handleSubmit} className={styles.form}>
+      <label htmlFor="user_name" className={styles.form__label}>User Name</label>
       <input
         id="user_name"
         name="user_name"
@@ -53,11 +54,12 @@ export default function Register() {
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         value={formik.values.user_name}
+        
       />
       {formik.touched.user_name && formik.errors.user_name ? (
         <div>{formik.errors.user_name}</div>
       ) : null}
-      <label htmlFor="password">Password</label>
+      <label htmlFor="password" className={styles.form__label}>Password</label>
       <input
         id="password"
         name="password"
@@ -65,11 +67,12 @@ export default function Register() {
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         value={formik.values.password}
+        className={styles.form__input}
       />
       {formik.touched.password && formik.errors.password ? (
         <div>{formik.errors.password}</div>
       ) : null}
-      <label htmlFor="confirmPassword">Confirm Password</label>
+      <label htmlFor="confirmPassword" className={styles.form__label}>Confirm Password</label>
       <input
         id="confirmPassword"
         name="confirmPassword"
@@ -77,12 +80,13 @@ export default function Register() {
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         value={formik.values.confirmPassword}
+        className={styles.form__input}
       />
       {formik.touched.confirmPassword && formik.errors.confirmPassword ? (
         <div>{formik.errors.confirmPassword}</div>
       ) : null}
 
-      <button type="submit">Register</button>
+      <button type="submit" className='form__label'>Register</button>
       {responseMessage ? <div>{responseMessage}</div> : null}
     </form>
   );

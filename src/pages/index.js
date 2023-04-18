@@ -1,8 +1,9 @@
 import Head from "next/head";
 import Register from "@/components/Register";
+import styles from '../styles/pages/MainPage.module.scss';
 
 
-export default function LoginPage() {
+export default function MainPage() {
  
 
   return (
@@ -16,9 +17,9 @@ export default function LoginPage() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
-      <main>
-        <h1>Sup, nerd!</h1>
-        <h3>Here to read some books? Please sign up or login below</h3>
+      <main className={styles.main__container}>
+        <h1 className={styles.heading}>Sup, nerd!</h1>
+        <h3 className={styles.heading}>Here to read some books? Please sign up or login below</h3>
         <Register/>
         <p>Already a nerd? Please sign in</p>
 
