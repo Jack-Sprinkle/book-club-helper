@@ -15,19 +15,16 @@ export default function LoginPage() {
       user_name: Yup.string()
         .max(15, "Must be 15 characters or less.")
         .min(3, "Must be 3 characters or more.")
-        .required("Please enter a user name"),
+        .required("Please enter a user name."),
       password: Yup.string()
-        .required("Please enter a password")
+        .required("Please enter a password.")
         .matches(
           /^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
-          "Password must contain at least 8 characters, one uppercase, one number and one special case character"
+          "Password must contain at least 8 characters, one uppercase, one number and one special case character."
         ),
       confirmPassword: Yup.string()
-        .required("Please confirm your password")
-        .matches(
-          /^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
-          "Password must contain at least 8 characters, one uppercase, one number and one special case character"
-        ),
+        .required("Please confirm your password.")
+        .oneOf([Yup.ref('password'), null], 'Passwords must match.')
     }),
 
     onSubmit: (values) => {
