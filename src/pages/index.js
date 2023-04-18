@@ -2,6 +2,7 @@ import Head from "next/head";
 import { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import axios from "axios";
 
 export default function LoginPage() {
   const formik = useFormik({
@@ -27,8 +28,15 @@ export default function LoginPage() {
         .oneOf([Yup.ref('password'), null], 'Passwords must match.')
     }),
 
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: async (values) => {
+      const newUser = {
+        user_name: values.user_name,
+        password: values.password
+      }
+      const response = await axios.post('/api/users/register', newUser);
+
+      const data = await response
+      console.log(data)
     },
   });
 
