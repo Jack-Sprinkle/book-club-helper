@@ -5,8 +5,10 @@ import axios from "axios";
 import styles from '../styles/components/Register.module.scss';
 import Image from "next/image";
 import logo from '../../public/images/book_club_logo.png';
+import { useRouter } from "next/router";
 
 export default function Register() {
+  const router = useRouter();
   const [responseMessage, setResponseMessage] = useState(null);
   const formik = useFormik({
     initialValues: {
@@ -37,11 +39,14 @@ export default function Register() {
       const data = await response;
       if (data.status === 200) {
         setResponseMessage("Login Successful");
-        sessionStorage.setItem('token', data.data.token)
+        sessionStorage.setItem('token', data.data.token);
+        setTimeout(() => {
+          router.push('/home')
+        }, 2000)
       } else {
         setResponseMessage("Failed to login");
       }
-    },
+    }
   });
   return (
     <form onSubmit={formik.handleSubmit} className={styles.form}>
