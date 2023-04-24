@@ -37,7 +37,7 @@ export default function MainPage() {
           <div className={styles.main__subcontainer}>
             <p className={styles.main__subheading}>Already a nerd?</p>
             <button className={styles.main__button} onClick={handleClick}>
-              Sign in
+              Log in
             </button>
           </div>
         </main>

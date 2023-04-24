@@ -51,7 +51,7 @@ export default function Register() {
   return (
     <form onSubmit={formik.handleSubmit} className={styles.form}>
       <Image className={styles.form__logo} src={logo} alt="slow burn book club logo" height={175} width={175}/>
-      <h3 className={styles.form__heading}>Sign Up</h3>
+      <h3 className={styles.form__heading}>Log in</h3>
       <label htmlFor="user_name" className={styles.form__label}>User Name</label>
       <input
         className={styles.form__input}
@@ -82,7 +82,7 @@ export default function Register() {
         <div className={styles.form__error}>{formik.errors.password}</div>
       ) : null}
 
-      <button type="submit" className={styles.form__button}>LOGIN</button>
+      <button type="submit" className={styles.form__button}>LOG IN</button>
       {responseMessage ? <div>{responseMessage}</div> : null}
     </form>
   );
