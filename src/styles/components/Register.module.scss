@@ -1,0 +1,78 @@
+@use "../partials/variables.module.scss" as *;
+@use "../partials/font.module.scss" as *;
+
+.form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 25rem;
+  border-radius: 1.25rem;
+  padding: 2rem;
+  margin: 1rem;
+  gap: 1rem;
+  box-sizing: border-box;
+  background: $off-white;
+  box-shadow: 14px 14px 20px $box-shadow-grey, -14px -14px 20px #ebe9e8;
+
+  &__heading {
+    align-self: center;
+    font-weight: 700;
+    font-size: 1.5rem;
+    line-height: 1.75rem;
+    margin: 0;
+    color: $black;
+  }
+
+  &__logo {
+    align-self: center;
+    border-radius: 50%;
+    box-shadow: 7px 7px 10px #cbced1, -7px -7px 10px #ebe9e8;
+  }
+
+  &__label {
+    width: 100%;
+    margin-bottom: 0.25rem;
+    padding: 0;
+    border: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: $black;
+  }
+
+  &__input {
+    border-radius: 3rem;
+    border: none;
+    background: $off-white;
+    padding: 0.625rem;
+    padding-left: 1.25rem;
+    height: 3.125rem;
+    font-size: 0.875rem;
+    box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px #ebe9e8;
+
+    &::placeholder {
+      color: $gold;
+    }
+  }
+
+  &__button {
+    font-family: "Nunito", sans-serif;
+    font-weight: 600;
+    color: $off-white;
+    background-color: $orange;
+    height: 2.5rem;
+    border-radius: 1.25rem;
+    border: none;
+    box-shadow: 6px 6px 6px #cbced1, -6px -6px 6px #ebe9e8;
+    transition: 0.5s;
+
+    &:hover {
+        box-shadow: none;
+    }
+  }
+
+  &__error {
+    font-size: .75rem;
+    color: $error-status;
+
+  }
+}

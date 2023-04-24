@@ -18,8 +18,6 @@ export default function MainPage() {
         {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
       <main className={styles.main__container}>
-        <h1 className={styles.heading}>Sup, nerd!</h1>
-        <h3 className={styles.heading}>Here to read some books? Please sign up or login below</h3>
         <Register/>
         <p>Already a nerd? Please sign in</p>
 

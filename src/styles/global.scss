@@ -1,5 +1,6 @@
 @use './partials/font.module.scss' as *;
 @use './partials/variables.module.scss' as *;
+@use './partials/responsive.module.scss' as *;
 
 *, *::before, *::after {
     box-sizing: border-box;
