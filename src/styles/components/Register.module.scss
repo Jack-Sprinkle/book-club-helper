@@ -2,7 +2,6 @@
 @use "../partials/font.module.scss" as *;
 
 .form {
-  position: relative;
   display: flex;
   flex-direction: column;
   min-height: 25rem;
@@ -45,7 +44,7 @@
     background: $off-white;
     padding: 0.625rem;
     padding-left: 1.25rem;
-    height: 3.125rem;
+    height: 2.5rem;
     font-size: 0.875rem;
     box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px #ebe9e8;
 

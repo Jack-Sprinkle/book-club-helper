@@ -1,1 +1,41 @@
+@use "../partials/font.module.scss" as *;
+@use "../partials/variables.module.scss" as *;
 
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  &__subheading {
+    text-align: center;
+    margin: 0;
+    font-weight: 600;
+    font-size: .875rem;
+  }
+
+  &__subcontainer {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__button {
+    font-family: "Nunito", sans-serif;
+    font-weight: 600;
+    color: $off-white;
+    background-color: $orange;
+    height: 2rem;
+    width: 5rem;
+    margin: 1rem auto;
+    border-radius: 1.25rem;
+    border: none;
+    box-shadow: 6px 6px 6px #cbced1, -6px -6px 6px #ebe9e8;
+    transition: 0.5s;
+
+    &:hover {
+      box-shadow: none;
+    }
+  }
+}
