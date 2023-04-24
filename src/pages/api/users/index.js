@@ -32,7 +32,7 @@ export default async function handler(req, res) {
         {expiresIn: "24h"}
     )
 
-    return res.json({token})
+    return res.status(200).json({token})
   } else {
     return res.status(400).send("Endpoint does not exist")
   }
