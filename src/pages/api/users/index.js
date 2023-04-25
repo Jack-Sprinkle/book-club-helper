@@ -1,4 +1,3 @@
-import { NextApiRequest, NextApiResponse } from "next";
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt";
 import jwt from 'jsonwebtoken';
@@ -8,7 +7,7 @@ export default async function handler(req, res) {
   if (req.method === "POST") {
     const { user_name, password } = req.body;
     if(!user_name || !password) {
-        return res.status(400).send("Please enter the required fields")
+        return res.status(400).send("Please enter the required fields.")
     }
 
     const user = await prisma.users.findUnique({
