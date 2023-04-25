@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import Header from "@/components/Header";
 
 export default function Home() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -27,6 +28,7 @@ export default function Home() {
 
   return (
     <>
+      <Header />
       <h1>This is the home page</h1>
     </>
   );
