@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Header from "@/components/Header";
+import AddBook from "@/components/AddBook";
 
 export default function Recommend() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -29,7 +30,7 @@ export default function Recommend() {
   return (
     <>
       <Header />
-      <h1>This is the recommend page</h1>
+      <AddBook />
     </>
   );
 }
