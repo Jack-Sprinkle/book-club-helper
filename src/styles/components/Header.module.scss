@@ -1,0 +1,25 @@
+@use '../partials/variables.module.scss' as *;
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    padding: 1rem;
+    background-color: $purple;
+    margin-bottom: 2rem;
+
+    &__button {
+        border: none;
+        background-image: url('../../../public/icons/menu.svg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-color: $purple;
+        width: 2rem;
+        height: 2rem;
+        cursor: pointer;
+    }
+}
