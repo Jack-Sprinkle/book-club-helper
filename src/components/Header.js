@@ -7,6 +7,7 @@ export default function Header() {
                 <ul>
                     <Link href='/home'><li>Home Page</li></Link>
                     <Link href='/recommend'><li>Recommend</li></Link>
+                    <Link href='/vote'><li>Vote</li></Link>
                 </ul>
             </nav>
         </header>

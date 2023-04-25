@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+import styles from "../styles/components/AddBook.module.scss";
 
 export default function AddBook() {
     const [responseMessage, setResponseMessage] = useState(null);
@@ -40,12 +41,13 @@ export default function AddBook() {
         },
     });
     return (
-        <form onSubmit={formik.handleSubmit}>
-            <h3>Recommend a Book!</h3>
-            <label htmlFor="title">
+        <form onSubmit={formik.handleSubmit} className={styles.form}>
+            <h3 className={styles.form__heading}>Recommend a Book!</h3>
+            <label htmlFor="title" className={styles.form__label}>
                 Title
             </label>
             <input
+                className={styles.form__input}
                 id="title"
                 name="title"
                 type="text"
@@ -55,12 +57,13 @@ export default function AddBook() {
                 placeholder="Title"
             />
             {formik.touched.title && formik.errors.title ? (
-                <div>{formik.errors.title}</div>
+                <div className={styles.form__error}>{formik.errors.title}</div>
             ) : null}
-            <label htmlFor="author">
+            <label htmlFor="author" className={styles.form__label}>
                 Author
             </label>
             <input
+                className={styles.form__input}
                 id="author"
                 name="author"
                 type="text"
@@ -70,12 +73,13 @@ export default function AddBook() {
                 placeholder="Author"
             />
             {formik.touched.author && formik.errors.author ? (
-                <div>{formik.errors.author}</div>
+                <div className={styles.form__error}>{formik.errors.author}</div>
             ) : null}
-            <label htmlFor="description">
+            <label htmlFor="description" className={styles.form__label}>
                 Description
             </label>
             <textarea
+                className={styles.form__textarea}
                 id="description"
                 name="description"
                 type="text"
@@ -85,16 +89,16 @@ export default function AddBook() {
                 placeholder="Book Description"
             />
             {formik.touched.description && formik.errors.description ? (
-                <div>
+                <div className={styles.form__error}>
                     {formik.errors.description}
                 </div>
             ) : null}
 
-            <button type="submit">
+            <button type="submit" className={styles.form__button}>
                 Add Book
             </button>
             {responseMessage ? (
-                <div>{responseMessage}</div>
+                <div className={styles.form__response}>{responseMessage}</div>
             ) : null}
         </form>
     );
