@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-import styles from '../styles/components/Register.module.scss';
+import styles from '../styles/components/Forms.module.scss';
 import Image from "next/image";
 import logo from '../../public/images/book_club_logo.png';
 import { useRouter } from "next/router";
@@ -83,7 +83,7 @@ export default function Register() {
       ) : null}
 
       <button type="submit" className={styles.form__button}>LOG IN</button>
-      {responseMessage ? <div>{responseMessage}</div> : null}
+      {responseMessage ? <div className={styles.form__response}>{responseMessage}</div> : null}
     </form>
   );
 }

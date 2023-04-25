@@ -46,10 +46,12 @@
     padding-left: 1.25rem;
     height: 2.5rem;
     font-size: 0.875rem;
+    font-family: "Nunito", sans-serif;
     box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px #ebe9e8;
 
     &::placeholder {
       color: $gold;
+      font-family: "Nunito", sans-serif;
     }
   }
 
@@ -72,6 +74,14 @@
   &__error {
     font-size: .75rem;
     color: $error-status;
+    max-width: 10rem;
 
+  }
+
+  &__response {
+    text-align: center;
+    color: $black;
+    font-size: 0.875rem;
+    font-weight: 600;
   }
 }

@@ -19,14 +19,22 @@ export default async function handler(req, res) {
     const hashedPassword = bcrypt.hashSync(password, salt);
 
     //create the user in the database
-    const newUser = await prisma.users.create({
-      data: {
-        id: uuidv4(),
-        userName: user_name,
-        password: hashedPassword,
-      },
-    });
 
-    return res.status(201).send("Registered Successfully");
+    try {
+       await prisma.users.create({
+        data: {
+          id: uuidv4(),
+          userName: user_name,
+          password: hashedPassword,
+        },
+      });
+
+      return res.status(201).send("Registered Successfully");
+    } catch {
+      return res.status(400).send("Failed to Register")
+    }
+    
+
+    
   }
 }
