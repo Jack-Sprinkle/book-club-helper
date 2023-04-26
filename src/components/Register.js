@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import axios from "axios";
 import styles from "../styles/components/Forms.module.scss";
 import Image from "next/image";
-import logo from "../../public/images/book_club_logo.png";
+import logo from "../../public/icons/book_club_logo.png";
 
 export default function Register() {
   const [responseMessage, setResponseMessage] = useState(null);

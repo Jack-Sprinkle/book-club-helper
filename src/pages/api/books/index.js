@@ -5,9 +5,9 @@ export default async function handler(req, res) {
     const prisma = new PrismaClient();
 
     if(req.method === "POST") {
-        const {title, author, description} = req.body;
+        const {title, author, description, monthRecommended} = req.body;
 
-        if (!title || !author || !description) {
+        if (!title || !author || !description || !monthRecommended) {
             return res.status(400).send("Please enter the required fields.")
         }
 
@@ -19,6 +19,7 @@ export default async function handler(req, res) {
                     author: author,
                     description: description,
                     selected: false,
+                    monthRecommended: monthRecommended
                 }
             })
 

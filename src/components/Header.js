@@ -2,7 +2,7 @@ import Menu from "./Menu";
 import { useState } from "react";
 import styles from '../styles/components/Header.module.scss';
 import Image from "next/image";
-import logo from "../../public/images/book_club_logo.png";
+import logo from "../../public/icons/book_club_logo.png";
 
 export default function Header() {
     const [show, setShow] = useState(false)
