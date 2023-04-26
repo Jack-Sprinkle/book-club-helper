@@ -32,6 +32,24 @@ export default async function handler(req, res) {
     }
 
     if(req.method === "GET") {
-        
+        const currentDate = new Date()
+        let currentMonth = currentDate.getMonth()
+
+        try {
+            const books = await prisma.books.findMany({
+                where: {
+                    monthRecommended: currentMonth
+                },
+                select: {
+                    title: true,
+                    author: true,
+                    description: true
+                }
+            })
+
+            return res.status(200).json(books)
+        } catch {
+            return res.status(400).send("Failed to get books for this month.")
+        }
     }
 }
