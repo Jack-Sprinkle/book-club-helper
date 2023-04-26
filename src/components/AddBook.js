@@ -33,8 +33,6 @@ export default function AddBook() {
                 monthRecommended: parseInt(values.monthRecommended)
             };
 
-            console.log(newBook)
-
             try {
                 const response = await axios.post("/api/books", newBook);
                 const data = await response;
