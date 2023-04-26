@@ -7,7 +7,7 @@ export default async function handler(req, res) {
     if(req.method === "POST") {
         const {title, author, description, monthRecommended} = req.body;
 
-        if (!title || !author || !description || !monthRecommended) {
+        if (!title || !author || !description || monthRecommended < 0) {
             return res.status(400).send("Please enter the required fields.")
         }
 
@@ -19,7 +19,8 @@ export default async function handler(req, res) {
                     author: author,
                     description: description,
                     selected: false,
-                    monthRecommended: monthRecommended
+                    monthRecommended: monthRecommended,
+                    votes: 0
                 }
             })
 
@@ -28,5 +29,9 @@ export default async function handler(req, res) {
             return res.status(400).send("Failed to add book recommendation.")
         }
 
+    }
+
+    if(req.method === "GET") {
+        
     }
 }

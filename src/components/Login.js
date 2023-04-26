@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import axios from "axios";
 import styles from '../styles/components/Forms.module.scss';
 import Image from "next/image";
-import logo from '../../public/images/book_club_logo.png';
+import logo from '../../public/icons/book_club_logo.png';
 import { useRouter } from "next/router";
 
 export default function Register() {
@@ -40,7 +40,6 @@ export default function Register() {
       if (data.status === 200) {
         setResponseMessage("Login Successful");
         sessionStorage.setItem('token', data.data.token);
-        resetForm();
         setTimeout(() => {
           router.push('/home')
         }, 2000)

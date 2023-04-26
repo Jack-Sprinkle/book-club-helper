@@ -12,7 +12,6 @@ export default function Menu({show}) {
             <ul className={styles.menu__list}>
                 <Link href='/home' className={styles.menu__link}><li className={styles.menu__item}>Home Page</li></Link>
                 <Link href='/recommend' className={styles.menu__link}><li className={styles.menu__item}>Recommend</li></Link>
-                <Link href='/vote' className={styles.menu__link}><li className={styles.menu__item}>Vote</li></Link>
             </ul>
         </nav>
     )

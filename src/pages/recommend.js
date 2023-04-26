@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import AddBook from "@/components/AddBook";
 import styles from "../styles/pages/RecommendPage.module.scss";
+import Vote from "@/components/Vote";
 
 export default function Recommend() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -32,6 +33,7 @@ export default function Recommend() {
     <main className={styles.main}>
       <Header />
       <AddBook />
+      <Vote />
     </main>
   );
 }
