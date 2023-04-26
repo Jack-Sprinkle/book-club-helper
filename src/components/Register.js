@@ -31,7 +31,7 @@ export default function Register() {
         .oneOf([Yup.ref("password"), null], "Passwords must match."),
     }),
 
-    onSubmit: async (values) => {
+    onSubmit: async (values, resetForm) => {
       const newUser = {
         user_name: values.user_name,
         password: values.password,
@@ -43,6 +43,7 @@ export default function Register() {
         if (data.status === 201) {
           setResponseMessage(data.data);
         }
+        resetForm();
       } catch {
         setResponseMessage("Failed to Register")
       }

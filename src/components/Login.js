@@ -29,7 +29,7 @@ export default function Register() {
         )
     }),
 
-    onSubmit: async (values) => {
+    onSubmit: async (values, resetForm) => {
       const user = {
         user_name: values.user_name,
         password: values.password,
@@ -40,6 +40,7 @@ export default function Register() {
       if (data.status === 200) {
         setResponseMessage("Login Successful");
         sessionStorage.setItem('token', data.data.token);
+        resetForm();
         setTimeout(() => {
           router.push('/home')
         }, 2000)

@@ -25,7 +25,7 @@ export default function AddBook() {
                 .required("Please select the month you are recommending the book.")
         }),
 
-        onSubmit: async (values) => {
+        onSubmit: async (values, {resetForm}) => {
             const newBook = {
                 title: values.title,
                 author: values.author,
@@ -39,6 +39,7 @@ export default function AddBook() {
                 if (data.status === 201) {
                     setResponseMessage(data.data);
                 }
+                resetForm()
             } catch {
                 setResponseMessage("Failed to add book recommendation");
             }
