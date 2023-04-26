@@ -11,6 +11,7 @@ export default function AddBook() {
             title: "",
             author: "",
             description: "",
+            monthRecommended: "",
         },
 
         validationSchema: Yup.object({
@@ -19,14 +20,17 @@ export default function AddBook() {
             author: Yup.string()
                 .required("Please enter am author."),
             description: Yup.string()
-                .required("Please enter a brief description")
+                .required("Please enter a brief description"),
+            monthRecommended: Yup.number()
+                .required("Please select the month you are recommending the book.")
         }),
 
         onSubmit: async (values) => {
             const newBook = {
                 title: values.title,
                 author: values.author,
-                description: values.description
+                description: values.description,
+                monthRecommended: parseInt(values.monthRecommended)
             };
 
             try {
@@ -91,6 +95,37 @@ export default function AddBook() {
             {formik.touched.description && formik.errors.description ? (
                 <div className={styles.form__error}>
                     {formik.errors.description}
+                </div>
+            ) : null}
+
+            <label htmlFor="monthRecommended" className={styles.form__label}>
+                Recommended Month
+            </label>
+            <select
+                className={styles.form__input}
+                id="monthRecommended"
+                name="monthRecommended"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.monthRecommended}
+            >
+                <option value='' disable selected>Select a month</option>
+                <option value='1'>January</option>
+                <option value='2'>February</option>
+                <option value='3'>March</option>
+                <option value='4'>April</option>
+                <option value='5'>May</option>
+                <option value='6'>June</option>
+                <option value='7'>July</option>
+                <option value='8'>August</option>
+                <option value='9'>September</option>
+                <option value='10'>October</option>
+                <option value='11'>November</option>
+                <option value='12'>December</option>
+            </select>
+            {formik.touched.monthRecommended && formik.errors.monthRecommended ? (
+                <div className={styles.form__error}>
+                    {formik.errors.monthRecommended}
                 </div>
             ) : null}
 
