@@ -110,7 +110,7 @@ export default function AddBook() {
                 onBlur={formik.handleBlur}
                 value={formik.values.monthRecommended}
             >
-                <option value='' disable selected>Select a month</option>
+                {/* <option value='' disable selected>Select a month</option> */}
                 <option value='0'>January</option>
                 <option value='1'>February</option>
                 <option value='2'>March</option>

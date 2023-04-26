@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 export default function Vote() {
 
     const [recBooks, setRecBooks] = useState(null)
+    const [response, setResponse] = useState(false)
     useEffect(() => {
         axios.get("/api/books")
             .then(response => {
@@ -21,7 +22,33 @@ export default function Vote() {
             </>
         )
     }
+
+    function submitVote(id) {
+        const vote = {
+            bookId: id,
+            vote: 1
+        }
+        console.log(vote)
+        try {
+            axios.put('/api/books', vote)
+        } catch {
+            setResponse("Failed to cast vote.")
+        }
+    }
     return (
+        <>
         <h3>Voting will take place here</h3>
+        {recBooks?.map(book =>{
+            const {id, title, author, description} = book
+            return(
+                <div key={id}>
+                    <h5>{title}</h5>
+                    <p>{author}</p>
+                    <p>{description}</p>
+                    <button onClick={() => submitVote(id)}>Vote!</button>
+                </div>
+            )
+        })}
+        </>
     );
 };
