@@ -14,7 +14,6 @@ export default function Vote({ updateBooks }) {
                 console.error(error)
             })
     }, [updateBooks])
-
     if (recBooks?.length < 1) {
         return (
             <>
@@ -34,31 +33,32 @@ export default function Vote({ updateBooks }) {
         }
         try {
             axios.put('/api/books', vote)
-            .then(response => {
-                return axios.get('./api/books')
-            }).then(response => {
-                setRecBooks(response.data)
-                setResponse("Casted your vote!")
-            })
+                .then(response => {
+                    return axios.get('./api/books')
+                }).then(response => {
+                    setRecBooks(response.data)
+                    setResponse("Casted your vote!")
+                })
 
             sessionStorage.setItem("voted", "true")
         } catch {
             setResponse("Failed to cast vote.")
         }
     }
+
     return (
         <section className={styles.vote}>
             <h3 className={styles.vote__heading}>Vote for next month's book!</h3>
-            <p>{response}</p>
+            <p className={styles.vote__response}>{response}</p>
             {recBooks?.map(book => {
                 const { id, title, author, description, votes } = book
                 return (
                     <div key={id} className={styles.book}>
                         <h4 className={styles.book__title}>{title}</h4>
-                        <p className={styles.book__author}>{author}</p>
+                        <p className={styles.book__author}><strong>By:</strong> {author}</p>
                         <p className={styles.book__desc}>{description}</p>
-                        <p>Current votes: {votes}</p>
-                        <button onClick={() => submitVote(id)} className={styles.book__vote}>Vote!</button>
+                        <p className={styles.book__votes}><strong>Current votes:</strong> {votes}</p>
+                        <button onClick={() => submitVote(id)} className={styles.book__button}>Vote!</button>
                     </div>
                 )
             })}

@@ -1,0 +1,78 @@
+@use "../partials/variables.module.scss" as *;
+
+.vote {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem 1rem;
+
+  &__heading {
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__response {
+    font-size: 0.8125rem;
+  }
+}
+
+.book {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: $off-white;
+  margin: 1rem;
+  border-radius: .25rem;
+  box-shadow: 14px 14px 20px $box-shadow-grey, -14px -14px 20px #ebe9e8;
+
+  &__title {
+    font-size: 1rem;
+    line-height: 1.25rem;
+    font-weight: 700;
+    color: $purple;
+    margin: 1rem 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid $black;
+  }
+
+  &__author {
+    font-size: 0.8125rem;
+    line-height: 1.0625rem;
+    color: $black;
+    margin: 0 1rem;
+  }
+
+  &__desc {
+    font-size: 0.8125rem;
+    line-height: 1.0625rem;
+    margin: 0 1rem;
+    padding: 1rem 0;
+  }
+
+  &__votes {
+    font-size: 0.8125rem;
+    line-height: 1.0625rem;
+    margin: 0 1rem;
+  }
+
+  &__button {
+    font-family: "Nunito", sans-serif;
+    font-weight: 600;
+    color: $off-white;
+    background-color: $orange;
+    height: 1.5rem;
+    width: 25%;
+    margin: 1rem;
+    border-radius: 1.25rem;
+    border: none;
+    box-shadow: 6px 6px 6px #cbced1, -6px -6px 6px #ebe9e8;
+    transition: 0.5s;
+
+    &:hover {
+      box-shadow: none;
+    }
+  }
+}
