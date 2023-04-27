@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-export default function Vote() {
+export default function Vote({updateBooks}) {
 
     const [recBooks, setRecBooks] = useState(null)
     const [response, setResponse] = useState(false)
@@ -12,9 +12,9 @@ export default function Vote() {
             }).catch(error => {
                 console.error(error)
             })
-    }, [recBooks])
+    }, [updateBooks])
 
-    if (!recBooks) {
+    if (recBooks?.length < 1) {
         return (
             <>
                 <h1>No recommended books for this month yet.</h1>

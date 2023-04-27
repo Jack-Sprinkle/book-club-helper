@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import axios from "axios";
 import styles from "../styles/components/AddBook.module.scss";
 
-export default function AddBook() {
+export default function AddBook({updateBooks, setUpdateBooks}) {
     const [responseMessage, setResponseMessage] = useState(null);
     const formik = useFormik({
         initialValues: {
@@ -39,6 +39,7 @@ export default function AddBook() {
                 if (data.status === 201) {
                     setResponseMessage(data.data);
                 }
+                setUpdateBooks(!updateBooks);
                 resetForm()
             } catch {
                 setResponseMessage("Failed to add book recommendation");

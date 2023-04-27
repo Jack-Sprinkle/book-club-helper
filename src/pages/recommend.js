@@ -7,6 +7,8 @@ import Vote from "@/components/Vote";
 
 export default function Recommend() {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [updateBooks, setUpdateBooks] = useState(false);
+
   const router = useRouter();
   const redirect = () => {
     router.push("/");
@@ -32,8 +34,8 @@ export default function Recommend() {
   return (
     <main className={styles.main}>
       <Header />
-      <AddBook />
-      <Vote />
+      <AddBook setUpdateBooks={setUpdateBooks} updateBooks={updateBooks} />
+      <Vote updateBooks={updateBooks} />
     </main>
   );
 }
