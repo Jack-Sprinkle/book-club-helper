@@ -12,7 +12,7 @@ export default function Vote() {
             }).catch(error => {
                 console.error(error)
             })
-    }, [])
+    }, [recBooks])
 
     if (!recBooks) {
         return (
@@ -28,7 +28,6 @@ export default function Vote() {
             bookId: id,
             vote: 1
         }
-        console.log(vote)
         try {
             axios.put('/api/books', vote)
         } catch {

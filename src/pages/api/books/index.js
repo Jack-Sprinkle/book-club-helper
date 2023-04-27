@@ -33,12 +33,12 @@ export default async function handler(req, res) {
 
     if(req.method === "GET") {
         const currentDate = new Date()
-        let currentMonth = currentDate.getMonth()
+        let nextMonth = currentDate.getMonth() + 1;
 
         try {
             const books = await prisma.books.findMany({
                 where: {
-                    monthRecommended: currentMonth
+                    monthRecommended: nextMonth
                 },
                 select: {
                     id: true,
