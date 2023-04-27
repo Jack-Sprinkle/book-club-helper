@@ -44,7 +44,8 @@ export default async function handler(req, res) {
                     id: true,
                     title: true,
                     author: true,
-                    description: true
+                    description: true,
+                    votes: true
                 }
             })
 

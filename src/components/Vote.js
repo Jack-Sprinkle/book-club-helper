@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import styles from '../styles/components/Vote.module.scss';
 
-export default function Vote({updateBooks}) {
+export default function Vote({ updateBooks }) {
 
     const [recBooks, setRecBooks] = useState(null)
     const [response, setResponse] = useState(false)
@@ -24,30 +25,43 @@ export default function Vote({updateBooks}) {
     }
 
     function submitVote(id) {
+        if (sessionStorage.getItem("voted")) {
+            return setResponse("You have already voted")
+        }
         const vote = {
             bookId: id,
             vote: 1
         }
         try {
             axios.put('/api/books', vote)
+            .then(response => {
+                return axios.get('./api/books')
+            }).then(response => {
+                setRecBooks(response.data)
+                setResponse("Casted your vote!")
+            })
+
+            sessionStorage.setItem("voted", "true")
         } catch {
             setResponse("Failed to cast vote.")
         }
     }
     return (
-        <>
-        <h3>Voting will take place here</h3>
-        {recBooks?.map(book =>{
-            const {id, title, author, description} = book
-            return(
-                <div key={id}>
-                    <h5>{title}</h5>
-                    <p>{author}</p>
-                    <p>{description}</p>
-                    <button onClick={() => submitVote(id)}>Vote!</button>
-                </div>
-            )
-        })}
-        </>
+        <section className={styles.vote}>
+            <h3 className={styles.vote__heading}>Vote for next month's book!</h3>
+            <p>{response}</p>
+            {recBooks?.map(book => {
+                const { id, title, author, description, votes } = book
+                return (
+                    <div key={id} className={styles.book}>
+                        <h4 className={styles.book__title}>{title}</h4>
+                        <p className={styles.book__author}>{author}</p>
+                        <p className={styles.book__desc}>{description}</p>
+                        <p>Current votes: {votes}</p>
+                        <button onClick={() => submitVote(id)} className={styles.book__vote}>Vote!</button>
+                    </div>
+                )
+            })}
+        </section>
     );
 };
