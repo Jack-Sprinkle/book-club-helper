@@ -54,8 +54,10 @@ export default function Vote({ updateBooks }) {
                 const { id, title, author, description, votes } = book
                 return (
                     <div key={id} className={styles.book}>
-                        <h4 className={styles.book__title}>{title}</h4>
-                        <p className={styles.book__author}><strong>By:</strong> {author}</p>
+                        <div className={styles.book__info}>
+                            <h4 className={styles.book__title}>{title}</h4>
+                            <p className={styles.book__author}><strong>By:</strong> {author}</p>
+                        </div>
                         <p className={styles.book__desc}>{description}</p>
                         <p className={styles.book__votes}><strong>Current votes:</strong> {votes}</p>
                         <button onClick={() => submitVote(id)} className={styles.book__button}>Vote!</button>

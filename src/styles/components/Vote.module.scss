@@ -28,21 +28,28 @@
   border-radius: .25rem;
   box-shadow: 14px 14px 20px $box-shadow-grey, -14px -14px 20px #ebe9e8;
 
+  &__info {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid $black;
+    margin: 1rem;
+    padding-bottom: .5rem;
+  }
+
   &__title {
     font-size: 1rem;
     line-height: 1.25rem;
     font-weight: 700;
     color: $purple;
-    margin: 1rem 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid $black;
+    margin: 0;
+    
   }
 
   &__author {
     font-size: 0.8125rem;
     line-height: 1.0625rem;
     color: $black;
-    margin: 0 1rem;
+    margin: .5rem auto 0 1rem;
   }
 
   &__desc {
