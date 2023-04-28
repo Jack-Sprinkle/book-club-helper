@@ -32,7 +32,28 @@ export default async function handler(req, res) {
     )
 
     return res.status(200).json({token})
-  } else {
-    return res.status(400).send("Endpoint does not exist")
+  } 
+
+  if (req.method === "GET") {
+    const authHeader = req.headers.authorization
+    const authToken = authHeader.split(' ')[1]
+
+    try {
+      const decoded = jwt.verify(authToken, process.env.JWT_KEY)
+      req.user = decoded;
+      const user = await prisma.users.findUnique({
+        where: {
+          id: req.user.id
+        }
+      })
+
+      delete user.password
+      delete user.isAdmin
+
+      return res.status(200).json(user)
+    } catch {
+      return res.status(400).send("User does not exist")
+    }
   }
+  
 }
