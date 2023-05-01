@@ -18,7 +18,7 @@ export default function AddBook({updateBooks, setUpdateBooks}) {
             title: Yup.string()
                 .required("Please enter a book title."),
             author: Yup.string()
-                .required("Please enter am author."),
+                .required("Please enter an author."),
             description: Yup.string()
                 .required("Please enter a brief description"),
             monthRecommended: Yup.number()
