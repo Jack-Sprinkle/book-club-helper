@@ -1,61 +1,12 @@
 import { PrismaClient } from "@prisma/client";
 import { v4 as uuidv4 } from "uuid";
 import nextConnect from "next-connect";
-import jwt from 'jsonwebtoken';
-import multer from "multer";
+import authMiddleware from "../middleware/authorize";
 
 const booksRoute = nextConnect({});
 
-const authMiddleware = (req, res, next) => {
-    if (!req.headers.authorization) {
-        return res.status(401).send('Please login');
-    } else {
-        const authHeader = req.headers.authorization;
-        const authToken = authHeader.split(' ')[1];
-        const decoded = jwt.verify(authToken, process.env.JWT_KEY)
-        req.user = decoded;
-        return next()
-    }
-}
+booksRoute.use(authMiddleware);
 
-booksRoute.use(authMiddleware)
-
-booksRoute.post(async (req, res) => {
-    const prisma = new PrismaClient();
-    const { title, author, description, monthRecommended } = req.body;
-
-    if (!title || !author || !description || monthRecommended < 0) {
-        return res.status(400).send("Please enter the required fields.")
-    }
-
-    // const upload = multer({
-    //     storage: multer.diskStorage({
-    //         destination: './public/uploads',
-    //         filename: (req, file, cb) => cb(null, file.originalname)
-    //     })
-    // })
-
-    // const uploadMiddleware = upload.array('image')
-    // handler.use(uploadMiddleware);
-
-    try {
-        await prisma.books.create({
-            data: {
-                id: uuidv4(),
-                title: title,
-                author: author,
-                description: description,
-                selected: false,
-                monthRecommended: monthRecommended,
-                votes: 0
-            }
-        })
-
-        return res.status(201).send("Book recommendation added.")
-    } catch {
-        return res.status(400).send("Failed to add book recommendation.")
-    }
-})
 
 booksRoute.get(async (req, res) => {
     const prisma = new PrismaClient();

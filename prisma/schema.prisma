@@ -28,5 +28,4 @@ model Books {
   userRatings Int @default(0) @map("user_ratings")
   monthRecommended Int @default(0) @map("month_recommended")
   votes Int @default(0)
-  image String @db.VarChar(255)
 }

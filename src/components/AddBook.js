@@ -4,9 +4,10 @@ import * as Yup from "yup";
 import axios from "axios";
 import styles from "../styles/components/AddBook.module.scss";
 
-export default function AddBook({updateBooks, setUpdateBooks}) {
+export default function AddBook({ updateBooks, setUpdateBooks }) {
 
     const token = sessionStorage.getItem('token');
+
 
     const [responseMessage, setResponseMessage] = useState(null);
     const formik = useFormik({
@@ -14,7 +15,7 @@ export default function AddBook({updateBooks, setUpdateBooks}) {
             title: "",
             author: "",
             description: "",
-            monthRecommended: "",
+            monthRecommended: ""
         },
 
         validationSchema: Yup.object({
@@ -25,19 +26,19 @@ export default function AddBook({updateBooks, setUpdateBooks}) {
             description: Yup.string()
                 .required("Please enter a brief description"),
             monthRecommended: Yup.number()
-                .required("Please select the month you are recommending the book.")
+                .required("Please select the month you are recommending the book."),
         }),
 
-        onSubmit: async (values, {resetForm}) => {
+        onSubmit: async (values, { resetForm }) => {
             const newBook = {
                 title: values.title,
                 author: values.author,
                 description: values.description,
-                monthRecommended: parseInt(values.monthRecommended)
+                monthRecommended: parseInt(values.monthRecommended),
             };
 
             try {
-                const response = await axios.post("/api/books", newBook, {
+                const response = await axios.post("/api/books/add", newBook, {
                     headers: {
                         Authorization: `Bearer: ${token}`
                     }
@@ -137,6 +138,11 @@ export default function AddBook({updateBooks, setUpdateBooks}) {
                     {formik.errors.monthRecommended}
                 </div>
             ) : null}
+            {/* <input
+                id='image'
+                name='image'
+                type='file'
+                /> */}
 
             <button type="submit" className={styles.form__button}>
                 Add Book
