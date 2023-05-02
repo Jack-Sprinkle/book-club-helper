@@ -3,13 +3,13 @@ import { v4 as uuidv4 } from "uuid";
 import bcrypt from "bcrypt";
 import nextConnect from "next-connect";
 
-const register = nextConnect({
+const registerRoute = nextConnect({
   onNoMatch(req, res) {
     res.status(405).json({ error: `Method '${req.method}' Not Allowed` })
   }
 })
 
-register.post(async (req, res) => {
+registerRoute.post(async (req, res) => {
   const prisma = new PrismaClient();
   //desctucture request body
   const { user_name, password } = req.body;
@@ -40,6 +40,6 @@ register.post(async (req, res) => {
   }
 });
 
-export default register
+export default registerRoute;
 
 
