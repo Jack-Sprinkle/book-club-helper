@@ -61,10 +61,9 @@ export default function Vote({ updateBooks }) {
             <h3 className={styles.vote__heading}>Vote for next month's book!</h3>
             <p className={styles.vote__response}>{response}</p>
             <Carousel
-                showArrows={true}
-                showIndicators={false}
                 infiniteLoop={true}
-                dynamicHeight={false}
+                showThumbs={false}
+                showIndicators={false}
                 className={styles.book}
             >
             {recBooks?.map(book => {
@@ -75,9 +74,11 @@ export default function Vote({ updateBooks }) {
                             <h4 className={styles.book__title}>{title}</h4>
                             <p className={styles.book__author}><strong>By:</strong> {author}</p>
                         </div>
+                        <div>
                         <p className={styles.book__desc}>{description}</p>
                         <p className={styles.book__votes}><strong>Current votes:</strong> {votes}</p>
                         <button onClick={() => submitVote(id)} className={styles.book__button}>Vote!</button>
+                        </div>
                     </div>
                 )
             })}

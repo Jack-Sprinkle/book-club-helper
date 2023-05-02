@@ -1,5 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { v4 as uuidv4 } from "uuid";
+import nextConnect from "next-connect";
+import multer from "multer";
 
 export default async function handler(req, res) {
     const prisma = new PrismaClient();
@@ -10,6 +12,16 @@ export default async function handler(req, res) {
         if (!title || !author || !description || monthRecommended < 0) {
             return res.status(400).send("Please enter the required fields.")
         }
+
+        const upload = multer({
+            storage: multer.diskStorage({
+                destination: './public/uploads',
+                filename: (req, file, cb) => cb(null, file.originalname)
+            })
+        })
+
+        const uploadMiddleware = upload.array('image')
+        handler.use(uploadMiddleware);
 
         try {
             await prisma.books.create({
