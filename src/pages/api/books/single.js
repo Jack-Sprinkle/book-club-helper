@@ -31,14 +31,12 @@ singleBookRoute.get(async (req, res) => {
                 author: true,
                 description: true,
                 userRatings: true,
-                votes: true,
-
             }
         })
 
 
 
-        return res.status(200).json(selectedBook)
+        return res.status(200).json(selectedBook[0])
     } catch {
         return res.status(400).send("Failed to find selected book")
     }

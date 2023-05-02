@@ -1,11 +1,13 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Header from "@/components/Header";
+import SelectedBook from "@/components/SelectedBook";
 import axios from "axios";
 
 export default function Home() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
+  const [currentBook, setCurrentBook] = useState(null)
   const router = useRouter();
   const redirect = () => {
     router.push("/");
@@ -21,6 +23,14 @@ export default function Home() {
       })
       .then(response => {
         setCurrentUser(response.data)
+        return axios.get('/api/books/single', {
+          headers: {
+            Authorization: `Bearer: ${token}`
+          }
+        })
+        .then(response => {
+          setCurrentBook(response.data)
+        })
       })
       .catch(error => {
         console.error(error)
@@ -39,12 +49,19 @@ export default function Home() {
     );
   }
 
+  if (!currentBook) {
+    return (
+      <h1>Loading this month's book!</h1>
+    )
+  }
+
+  console.log(currentBook)
+
   return (
     <>
       <Header />
       <h1>Book for the month:</h1>
-      <p>Book and image will go here</p>
-      <p>Books rating here</p>
+      <SelectedBook currentBook={currentBook}/>
       <p>Leave your book rating!</p>
       <p>Leave your comment on the book!</p>
     </>
