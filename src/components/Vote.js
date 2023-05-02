@@ -8,12 +8,16 @@ export default function Vote({ updateBooks }) {
 
     const [recBooks, setRecBooks] = useState(null)
     const [response, setResponse] = useState(false)
-    const [currentBook, setCurrentBook] = useState(null)
+    const token = sessionStorage.getItem('token');
+
     useEffect(() => {
-        axios.get("/api/books")
+        axios.get("/api/books", {
+            headers: {
+                Authorization: `Bearer: ${token}`
+            }
+        })
             .then(response => {
                 setRecBooks(response.data)
-                setCurrentBook(response.data[0])
             }).catch(error => {
                 console.error(error)
             })
@@ -38,7 +42,11 @@ export default function Vote({ updateBooks }) {
             vote: 1
         }
         try {
-            axios.put('/api/books', vote)
+            axios.put('/api/books', vote, {
+                headers: {
+                    Authorization: `Bearer: ${token}`
+                }
+            })
                 .then(response => {
                     return axios.get('./api/books')
                 }).then(response => {
@@ -52,10 +60,6 @@ export default function Vote({ updateBooks }) {
         }
     }
 
-    //make a vote component
-    //pass down the current index of the recommended book to display in the card. 
-    //create click handlers in the parent "vote" component to update state on the card being displayed
-    //wrap in a use effect to update the "vote card component" everytime a button is clicked.
     return (
         <section className={styles.vote}>
             <h3 className={styles.vote__heading}>Vote for next month's book!</h3>

@@ -5,6 +5,9 @@ import axios from "axios";
 import styles from "../styles/components/AddBook.module.scss";
 
 export default function AddBook({updateBooks, setUpdateBooks}) {
+
+    const token = sessionStorage.getItem('token');
+
     const [responseMessage, setResponseMessage] = useState(null);
     const formik = useFormik({
         initialValues: {
@@ -34,7 +37,11 @@ export default function AddBook({updateBooks, setUpdateBooks}) {
             };
 
             try {
-                const response = await axios.post("/api/books", newBook);
+                const response = await axios.post("/api/books", newBook, {
+                    headers: {
+                        Authorization: `Bearer: ${token}`
+                    }
+                });
                 const data = await response;
                 if (data.status === 201) {
                     setResponseMessage(data.data);
