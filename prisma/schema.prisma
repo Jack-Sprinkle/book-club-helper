@@ -26,6 +26,7 @@ model Books {
   description String @db.VarChar(255)
   selected Boolean @default(false)
   userRatings Int @default(0) @map("user_ratings")
+  numberOfRatings Int @default(0) @map("number_of_ratings")
   monthRecommended Int @default(0) @map("month_recommended")
   votes Int @default(0)
 }

@@ -7,13 +7,15 @@ import { Form, Radio, Rate } from './RatingStyles'
 export default function Rating({ currentBook }) {
     const [userRating, setUserRating] = useState(0);
     const token = sessionStorage.getItem('token');
-
     function handleSubmit(event) {
         event.preventDefault()
         axios.put(`./api/books/${currentBook.id}`, {userRating}, {
             headers: {
                 Authorization: `Bearer: ${token}`
             }
+        })
+        .then(response => {
+            console.log(response)
         })
     }
     return (
